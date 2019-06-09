@@ -24,12 +24,14 @@ export class StudentsComponent implements OnInit {
   ngOnInit() {
     this.getStudents();
   }
-  onSelect(student: Student): void
-  {
-    this.selectedStudent = student;
-  }
+
+  // onSelect(student: Student): void
+  // {
+  //   this.selectedStudent = student;
+  // }
   
   getStudents(): void{
-    this.students = this.studentService.getStudents();
+    this.studentService.getStudents()
+    .subscribe(students => this.students = students);
   }
 }
