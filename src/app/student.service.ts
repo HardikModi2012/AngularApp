@@ -10,8 +10,12 @@ export class StudentService {
 
   constructor() { }
 
-  getStudents(): Observable<Student[]>
-  {
+  getStudents(): Observable<Student[]>{
     return of(STUDENTS);
+  }
+  
+  getStudent(id: number): Observable<Student>{
+    return of(STUDENTS.find(student => student.id === id));
+    
   }
 }

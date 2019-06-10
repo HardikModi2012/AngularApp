@@ -9,27 +9,14 @@ import { StudentService } from '../student.service';
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent implements OnInit {
-
-  // students = STUDENTS;
-
-  selectedStudent : Student;
-
   students : Student[];
 
-  
-  constructor(private studentService: StudentService) { 
-    
-  }
+  constructor(private studentService: StudentService) { }
 
   ngOnInit() {
     this.getStudents();
   }
 
-  // onSelect(student: Student): void
-  // {
-  //   this.selectedStudent = student;
-  // }
-  
   getStudents(): void{
     this.studentService.getStudents()
     .subscribe(students => this.students = students);
