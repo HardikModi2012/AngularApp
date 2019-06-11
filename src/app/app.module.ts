@@ -8,19 +8,28 @@ import { StudentsComponent } from './students/students.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentsComponent,
     StudentDetailComponent,
-    DashboardComponent
+    DashboardComponent,
+    PageNotFoundComponentComponent
   ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false}
+    )
   ],
 
   providers: [],
