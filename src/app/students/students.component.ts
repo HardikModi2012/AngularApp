@@ -28,6 +28,12 @@ export class StudentsComponent implements OnInit {
       .subscribe(student => {
         this.students.push(student);
       });
+
   }
   
+  delete(student: Student): void
+  {
+    this.students = this.students.filter(s => s ! !== student);
+    this.studentService.deleteStudent(student).subscribe();
+  }
 }
