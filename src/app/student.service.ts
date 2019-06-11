@@ -51,7 +51,7 @@ addStudent (student: Student): Observable<Student> {
 
   deleteStudent (student: Student | number): Observable<Student>
   {
-    const id = typeof student ==== 'number' ? student : student.id;
+    const id = typeof student === 'number' ? student : student.id;
     const url = `${this.studentUrl}/${id}`;
 
     return this.http.delete<Student>(url, httpOptions).pipe(
@@ -60,6 +60,17 @@ addStudent (student: Student): Observable<Student> {
     );
   }
 
+  searchStudent(term: string): Observable<Student[] >
+  {
+    if(!term.trim())
+    {
+      return of([]);
+    }
+    return this.http.get<Student[]>(`${this.studentUrl}/?name=${term}`).pipe
+    (tap(_ => this.log(`found students matching "${term}"`)),
+    catchError(this.handleError<Student[]>('searchStudent',[]))
+    );
+  }
   private handleError<T> (operation = 'operation', result?: T)
   {
     return(error: any): Observable<T> => 
@@ -68,6 +79,7 @@ addStudent (student: Student): Observable<Student> {
       this.log(`${operation} failed: ${error.message}`);
       return of(result as T);
   }
+
 
   
 }  log(arg0: string) {

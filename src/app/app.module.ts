@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
+import { StudentSearchComponent } from './student-search/student-search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PageNotFoundComponentComponent } from './page-not-found-component/page-
     StudentsComponent,
     StudentDetailComponent,
     DashboardComponent,
-    PageNotFoundComponentComponent
+    PageNotFoundComponentComponent,
+    StudentSearchComponent
   ],
 
   imports: [
