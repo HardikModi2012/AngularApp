@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError , map , tap } from 'rxjs/operators';
+
+
 const httpOptions = {
   headers: new HttpHeaders({'Content-type': 'application/json'})
 };
@@ -23,6 +25,7 @@ export class StudentService {
     getStudents(): Observable<Student[]>{
      return this.http.get<Student[]>(this.studentUrl)
     .pipe(
+      tap(_ => this.log('fetched students')),
       catchError(this.handleError<Student[]>('getStudent', []))
   );
   }
