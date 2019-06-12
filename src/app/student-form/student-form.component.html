@@ -1,16 +1,25 @@
-<div class="panel-heading">
-  StudentForm
+<form #studentForm="ngForm" (ngSubmit)="saveStudent(studentForm)">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Student Form</h3>
   </div>
-  <form>
+  <div class="panel-body">
     <div class="form-group">
       <label for="firstName">First Name</label>
-      <input required ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" id="firstName" type="text" class="form-control">
-      <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid" >firstName IS required</div>
+      <input required  id="firstName" name="firstName" [(ngModel)]="firstName" type="text" class="form-control">
     </div>
+
     <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input ngModel name="lastName" id="lastName" type="text" class="form-control">
-      </div>
-      <button class="btn btn-primary">Submit</button>
+        <input  id="lastName" name="lastName" [(ngModel)]="lastName"  type="text" class="form-control">
+    </div>
+
+    <div class="panel-footer">
+      <button type="submit" class="btn btn-primary">Submit</button>
       <button class="btn btn-primary">back</button>
-  </form>
+    </div>
+  </div> 
+</div>
+</form>
+
+Angular Generated Form model:{{studentForm.value | json}}

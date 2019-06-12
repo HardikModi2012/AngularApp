@@ -13,6 +13,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { StudentSearchComponent } from './student-search/student-search.component';
 import { StudentFormComponent } from './student-form/student-form.component';
+import { ListStudentsComponent } from './list-students/list-students.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { StudentFormComponent } from './student-form/student-form.component';
     DashboardComponent,
     PageNotFoundComponentComponent,
     StudentSearchComponent,
-    StudentFormComponent
+    StudentFormComponent,
+    ListStudentsComponent
   ],
 
   imports: [
