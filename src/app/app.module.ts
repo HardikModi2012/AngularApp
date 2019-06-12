@@ -8,12 +8,9 @@ import { StudentsComponent } from './students/students.component';
 import { StudentDetailComponent } from './student-detail/student-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
-import { StudentSearchComponent } from './student-search/student-search.component';
 import { StudentFormComponent } from './student-form/student-form.component';
-import { ListStudentsComponent } from './list-students/list-students.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +19,8 @@ import { ListStudentsComponent } from './list-students/list-students.component';
     StudentDetailComponent,
     DashboardComponent,
     PageNotFoundComponentComponent,
-    StudentSearchComponent,
     StudentFormComponent,
-    ListStudentsComponent
+    StudentListComponent,
   ],
 
   imports: [
@@ -33,9 +29,7 @@ import { ListStudentsComponent } from './list-students/list-students.component';
     FormsModule,
     HttpClientModule,
 
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false}
-    )
+   
   ],
 
   providers: [],

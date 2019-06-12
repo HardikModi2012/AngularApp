@@ -1,91 +1,55 @@
 import { Student } from './student';
 import { STUDENTS } from './mock-students';
 import { Injectable } from '@angular/core';
-import { Observable, of} from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of, observable} from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError , map , tap } from 'rxjs/operators';
-
-
-const httpOptions = {
-  headers: new HttpHeaders({'Content-type': 'application/json'})
-};
+//import 'rxjs/add/operator/map';
+// import 'rxjs/add/observable/throw';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
-
-  
-  private studentUrl = 'api/students';
-// URL to web api
-
-  constructor(
-    private http: HttpClient) { }
-
-    getStudents(): Observable<Student[]>{
-     return this.http.get<Student[]>(this.studentUrl)
-    .pipe(
-      tap(_ => this.log('fetched students')),
-      catchError(this.handleError<Student[]>('getStudent', []))
-  );
-  }
-  
-  getStudent(id: number): Observable<Student>{
-    return of(STUDENTS.find(student => student.id === id));
+private studentUrl = "http://localhost:53338/api/student/getAll"
+    constructor(private http: HttpClient) {}
     
-  }
+    getStudents(): Observable<Student[]>{
+      return this.http.get<Student[]>(this.studentUrl).pipe(
+        map(response => { 
+          console.log(response);
+          return response; }),
+        catchError(this.handleError<Student[]>('getHeroes', []))
+      );
+      // we r expecting array of product we r using <Student[]>
+     }
 
-  
-  updateStudent (student: Student): Observable<any>
-  {
-    return this.http.put(this.studentUrl , student , httpOptions).pipe
-    (tap(_ => this.log(`updated student id=${student.id}`)),
-    catchError(this.handleError<any>('updatedStudent'))
-    );
-  }
-  
-  /** POST: add a new hero to the server */
-addStudent (student: Student): Observable<Student> {
-  return this.http.post<Student>(this.studentUrl, student, httpOptions).pipe(
-    tap((newStudent: Student) => this.log(`added student w/ id=${newStudent.id}`)),
-    catchError(this.handleError<Student>('addStudent'))
-  );
-  }
-
-  deleteStudent (student: Student | number): Observable<Student>
-  {
-    const id = typeof student === 'number' ? student : student.id;
-    const url = `${this.studentUrl}/${id}`;
-
-    return this.http.delete<Student>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted student id=${id}`)),
-      catchError(this.handleError<Student>('deletedStudent'))
-    );
-  }
-
-  searchStudent(term: string): Observable<Student[] >
-  {
-    if(!term.trim())
-    {
-      return of([]);
+     private handleError<T> (operation = 'operation', result?: T) {
+      return (error: any): Observable<T> => {
+     
+        // TODO: send the error to remote logging infrastructure
+        console.error(error); // log to console instead
+     
+        // TODO: better job of transforming error for user consumption
+        this.log(`${operation} failed: ${error.message}`);
+     
+        // Let the app keep running by returning an empty result.
+        return of(result as T);
+      };
     }
-    return this.http.get<Student[]>(`${this.studentUrl}/?name=${term}`).pipe
-    (tap(_ => this.log(`found students matching "${term}"`)),
-    catchError(this.handleError<Student[]>('searchStudent',[]))
-    );
-  }
-  private handleError<T> (operation = 'operation', result?: T)
-  {
-    return(error: any): Observable<T> => 
+
+     getStudent(id: number): Observable<Student> {
+      // TODO: send the message _after_ fetching the student
+      return of(STUDENTS.find(student => student.Student_Id === id));
+     }
+    // private handleError(err: HttpErrorResponse) {
+    //   console.log(err.message);
+    //   return observable.throw(err.message);
+      
+    // }  
+    updateStudent(): Observable<Student[]>
     {
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-  }
-
-
-  
-}  log(arg0: string) {
-    throw new Error("Method not implemented.");
-  }
+      return this.http.put<Student[]>(this.studentUrl,{});
+    }
+    
 }

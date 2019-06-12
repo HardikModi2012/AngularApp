@@ -18,7 +18,9 @@ export class DashboardComponent implements OnInit {
   }
 
   getStudents(): void  {
-    this.studentService.getStudents()
-    .subscribe(students => this.students = students.slice(1,5));
+    //alert("try");
+    this.studentService.getStudents().subscribe(studentss => this.students = studentss);
+    console.log(this.students);
+    //this.students is part of component
   }
 }

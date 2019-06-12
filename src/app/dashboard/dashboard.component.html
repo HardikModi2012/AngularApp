@@ -4,8 +4,8 @@
   <a *ngFor="let student of students" class="col-1-4"
   routerLink="/detail/{{student.id}}">
     <div class="module student">
-      <h4>{{student.name}}</h4>
+      <h4>{{student.StudentName}}</h4>
     </div>
   </a>
+  {{students | json}}
 </div>
-<app-student-search></app-student-search>

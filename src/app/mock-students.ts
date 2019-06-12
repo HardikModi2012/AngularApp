@@ -1,13 +1,13 @@
 import { Student } from './student';
 
+
 export const STUDENTS: Student[] = 
 [
-    { id : 11 , name: 'Dr rudra'},
-    { id : 12 , name: 'Harsh'},
-    { id : 13 , name: 'Virat'},
-    { id : 14 , name: 'Mahi'},
-    { id : 15 , name: 'Bumrah'},
-    { id : 16 , name: 'Jadeja'},
-    { id : 17 , name: 'Yuvi'},
-    { id : 18 , name: 'Viru'},
+    { Student_Id : 11 , StudentName: 'Dr rudra' ,Email: 'rudru@gmail.com'},
+    { Student_Id : 12 , StudentName: 'Harsh' ,Email: 'ha@gmail.com'},
+    { Student_Id : 13 , StudentName: 'dhara' ,Email: 'dhara@gmail.com'},
+    { Student_Id : 14 , StudentName: 'aakash' ,Email:'aakash@gmail.com'},
+    { Student_Id : 15 , StudentName: 'sunny' ,Email:'suny@gmail.com'},
+    { Student_Id : 16 , StudentName: 'hardik' ,Email:'hardik@gmail.com'},
+   
 ]

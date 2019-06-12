@@ -1,0 +1,34 @@
+<div class="panel panel-primary" *ngIf="students">
+  <div class="panel-heading">
+    Student list
+  </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let student of students;">
+        <td>{{student.id }}</td>
+        <td>{{student.name }}</td>
+        <td>{{student.email }}</td>
+      </ng-container>
+      <tr *ngIf="!students">
+          <td colspan="3">
+              Loading data. Please wait...
+          </td>
+      </tr>
+      <!--This message is displayed if the web services does not return any data-->
+      <tr *ngIf="students && students.length==0">
+          <td colspan="3">
+              No student records to display
+          </td>
+      </tr>
+      </tbody>
+      
+    </table>
+  </div>

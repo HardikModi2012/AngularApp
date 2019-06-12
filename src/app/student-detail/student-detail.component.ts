@@ -13,8 +13,10 @@ export class StudentDetailComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
+    // holds information about the route to this instance of component
     private studentService : StudentService,
-    private location : Location
+    // gets student data from the remote server and this component will use it to get the student2display.
+    private location : Location//for interacting with browser
   ) { }
 
   ngOnInit(): void {
@@ -27,13 +29,14 @@ export class StudentDetailComponent implements OnInit {
     .subscribe(student => this.student = student);
   }
 
+  // save(): void{
+  //   this.studentService.updateStudent(this.student)
+  //   .subscribe(() => this.goBack());
+  // }
+
   goBack(): void
   {
     this.location.back();
   }
-  save(): void
-  {
-    this.studentService.updateStudent(this.student)
-    .subscribe(() => this.goBack());
-  }
+  
 }
