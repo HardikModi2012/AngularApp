@@ -28,7 +28,7 @@ export class StudentDetailComponent implements OnInit {
     this.studentService.getStudent(id)
     .subscribe(student => this.student = student);
   }
-
+//static image of the route information shortly after the component was created
   // save(): void{
   //   this.studentService.updateStudent(this.student)
   //   .subscribe(() => this.goBack());

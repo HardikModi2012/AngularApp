@@ -1,16 +1,19 @@
  
 <div *ngIf="student">
   
-  <h2>{{student.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{student.id}}</div>
+  <h2>{{student.StudentName | uppercase}} Details</h2>
+  <div><span>id: </span>{{student.Student_Id}}</div>
   
   <div>
       <label>name:
-          <input [(ngModel)]="student.name" placeholder="ur name"/>
+          <input [(ngModel)]="student.Student_Id" placeholder="ur Id"/>
+          <input [(ngModel)]="student.StudentName" placeholder="ur name"/>
+          <input [(ngModel)]="student.Email" placeholder="ur email"/>
       </label>
   </div>
+  {{ student.Student_Id | json }}
   <button (click)="goBack()">go back</button>
   <button (click)="save()">save</button>
-  <button (click)="delete()">save</button>
+  
   
   </div>

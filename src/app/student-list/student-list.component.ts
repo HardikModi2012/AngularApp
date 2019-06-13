@@ -9,13 +9,14 @@ import { StudentService } from '../student.service';
 })
 export class StudentListComponent implements OnInit {
   students : Student[];
-  constructor() { }
+  constructor(private studentService: StudentService) { }
 
-  ngOnInit(){}
-  // : void {
-  //   this.students = this.students.
-  //     .subscribe(students => this.students = students);
-    
-  // }
+  ngOnInit() {
+    this.getStudents();
+  }
+    getStudents(): void{
+   this.studentService.getStudents().subscribe(studentsData => this.students = studentsData );//callbackfunction
+    // studentsData will going to receive data,we use this data to populate to students parameter
+  }
+  }
 
-}

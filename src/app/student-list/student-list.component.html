@@ -6,23 +6,30 @@
     <table class="table">
       <thead>
         <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>email</th>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email</th>
         </tr>
       </thead>
       <tbody>
+       
         <ng-container *ngFor="let student of students;">
-        <td>{{student.id }}</td>
-        <td>{{student.name }}</td>
-        <td>{{student.email }}</td>
+          <tr>
+        <td>
+          <a [routerLink]="['/students',student.Student_Id]">
+            {{student.Student_Id }}
+          </a> 
+        </td>
+        <td>{{student.StudentName | uppercase}}</td>
+        <td>{{student.Email }}</td>
+      </tr>
       </ng-container>
       <tr *ngIf="!students">
           <td colspan="3">
               Loading data. Please wait...
           </td>
-      </tr>
-      <!--This message is displayed if the web services does not return any data-->
+      </tr> 
+      <!-- This message is displayed if the web services does not return any data-->
       <tr *ngIf="students && students.length==0">
           <td colspan="3">
               No student records to display
@@ -31,4 +38,4 @@
       </tbody>
       
     </table>
-  </div>
+  </div> 

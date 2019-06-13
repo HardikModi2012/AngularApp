@@ -37,16 +37,20 @@ private studentUrl = "http://localhost:53338/api/student/getAll"
         return of(result as T);
       };
     }
+  log(arg0: string) {
+    throw new Error("Method not implemented.");
+  }
 
-     getStudent(id: number): Observable<Student> {
+     getStudent(Student_Id : number): Observable<Student> {
       // TODO: send the message _after_ fetching the student
-      return of(STUDENTS.find(student => student.Student_Id === id));
-     }
-    // private handleError(err: HttpErrorResponse) {
-    //   console.log(err.message);
-    //   return observable.throw(err.message);
       
-    // }  
+      return this.http.get<Student>(this.studentUrl).pipe(
+        map(response => {console.log(response);return response; }),
+        catchError(this.handleError<Student>('this.getStudent  = Student_Id ') )
+        
+      );
+     }
+    
     updateStudent(): Observable<Student[]>
     {
       return this.http.put<Student[]>(this.studentUrl,{});
