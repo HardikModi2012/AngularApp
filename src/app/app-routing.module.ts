@@ -11,7 +11,7 @@ import { StudentListComponent } from './student-list/student-list.component';
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard',  pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent },
-  {path: 'detail/:Student_Id', component: StudentDetailComponent },
+  {path: 'detail/:id', component: StudentDetailComponent },
   {path: 'students', component: StudentsComponent },
   {path: 'studentForm', component: StudentFormComponent },
   {path: 'studentList', component: StudentListComponent },

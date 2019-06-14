@@ -3,13 +3,17 @@ import { Student } from '../student';
 import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import { StudentService } from '../student.service';
+
+
 @Component({
   selector: 'app-student-detail',
   templateUrl: './student-detail.component.html',
   styleUrls: ['./student-detail.component.css']
 })
+
+
 export class StudentDetailComponent implements OnInit {
-   student: Student;
+  @Input() student: Student;
   
   constructor(
     private route: ActivatedRoute,
@@ -24,20 +28,21 @@ export class StudentDetailComponent implements OnInit {
   }
 
   getStudent(): void {
-    const Student_Id = this.route.snapshot.params['Student_Id'];
-    this.studentService.getStudent(Student_Id)
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.studentService.getStudent(id)
     .subscribe(student => this.student = student);//callback function
   }
+
   goBack(): void
   {
     this.location.back();
   }
 
 //static image of the route information shortly after the component was created
-  save(): void{
-    this.studentService.updateStudent(this.student)
-    .subscribe(() => this.goBack());
-  } 
+  // save(): void{
+  //   this.studentService.updateStudent(this.student)
+  //   .subscribe(() => this.goBack());
+  // } 
 
   
   
