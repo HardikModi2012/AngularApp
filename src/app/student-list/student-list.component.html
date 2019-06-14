@@ -1,14 +1,9 @@
-<div class="panel panel-primary" *ngIf="students">
-  <div class="panel-heading">
-    Student list
-  </div>
-
-    <table class="table">
+<div class="panel panel-primary" >
+      <table *ngIf="students">
       <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Email</th>
+        <tr colspan="2">
+          <th>Student Details</th>
+          
         </tr>
       </thead>
       <tbody>

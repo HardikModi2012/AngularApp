@@ -10,7 +10,7 @@ import { StudentService } from '../student.service';
 })
 export class StudentsComponent implements OnInit {
   students : Student[];
-
+  // students is going to keep records of the student obj
   constructor(private studentService: StudentService) { }
 
   ngOnInit() {
@@ -21,19 +21,11 @@ export class StudentsComponent implements OnInit {
     this.studentService.getStudents()
     .subscribe(students => this.students = students);
   }
-  // add(name: string): void {
-  //   name = name.trim();
-  //   if (!name) { return; }
-  //   this.studentService.addStudent({ name } as Student)
-  //     .subscribe(student => {
-  //       this.students.push(student);
-  //     });
-
-  // }
   
-  // delete(student: Student): void
-  // {
-  //   this.students = this.students.filter(s => s ! !== student);
-  //   this.studentService.deleteStudent(student).subscribe();
-  // }
+  
+  delete(student: Student): void
+  {
+    this.students = this.students.filter(s => s !== student);
+    this.studentService.deleteStudent(student).subscribe();
+  }
 }

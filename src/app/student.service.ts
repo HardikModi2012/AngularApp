@@ -44,16 +44,30 @@ private studentUrl = "http://localhost:53338/api/student/getAll"
      getStudent(Student_Id : number): Observable<Student> {
       // TODO: send the message _after_ fetching the student
       
-      return this.http.get<Student>(this.studentUrl).pipe(
+      return this.http.get<Student>(this.studentUrl)
+      .pipe(
         map(response => {console.log(response);return response; }),
-        catchError(this.handleError<Student>('this.getStudent  = Student_Id ') )
+        catchError(this.handleError<Student>(`this.getStudent Student_Id = Student_Id`) )
         
       );
      }
     
-    updateStudent(): Observable<Student[]>
+    updateStudent( student: Student): Observable<Student[]>
     {
-      return this.http.put<Student[]>(this.studentUrl,{});
+      return this.http.put<Student[]>("http://localhost:53338/api/student/UpdateStudent",{}).pipe
+      (map(response => {return response; }),
+      catchError(this.handleError<Student[]>('updateStudent'))
+      );
+    }
+
+    deleteStudent( student: Student | number): Observable<Student[]>
+    {
+      const Student_Id = typeof student === 'number' ? student : student.Student_Id;
+      return this.http.delete<Student[]>("http://localhost:53338/api/student/UpdateStudent",{}).pipe
+      (map(response => {return response; }),
+      catchError(this.handleError<Student[]>('deleteStudent'))
+      );
     }
     
 }
+
