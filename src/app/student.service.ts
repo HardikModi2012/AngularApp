@@ -46,30 +46,34 @@ private studentUrl = "http://localhost:53338/api/student/getAll";
       .pipe(map(response =>{
            console.log(response);
               return response; }),
-       
+       // {}=curly brachet is for paramater which  is going to fetch from api
+
         catchError(this.handleError<Student>("this.getStudent Student_Id =${id}") )
         );
        }
 
       // 
      
-    
-    updateStudent(student: Student): Observable<Student[]>
+   
+    updateStudent(  student: Student): Observable<Student[]>
     {
-      return this.http.put<Student[]>(this.studentUrl, student , httpOptions ).pipe
+      const id = typeof student === 'number' ? student : student.Student_Id;
+
+      return this.http.put<Student[]>((`http://localhost:53338/api/student/UpdateStudent/${id}`), student , httpOptions ).pipe
       (map(response => {return response; }),
       catchError(this.handleError<Student[]>('updateStudent'))
       );
     }
 
     deleteStudent( student: Student | number): Observable<Student> {
-      const id = typeof student === 'number' ? student : student.id;
-
-      return this.http.delete<Student>((`{http://localhost:53338/api/student/DeleteStudent}/${id}`), httpOptions).pipe
-      (map(response => {return response; }),
+      const id1 = typeof student === 'number' ? student : student.Student_Id;
+      return this.http.delete<Student>((`http://localhost:53338/api/student/DeleteStudent/${id1}`),httpOptions).pipe(
       catchError(this.handleError<Student>('deleteStudent'))
       );
     }
     
+    /* GET heroes whose name contains search term */
+    
+  
 }
 
