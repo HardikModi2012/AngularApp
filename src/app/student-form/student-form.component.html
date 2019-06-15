@@ -1,12 +1,12 @@
-<form #studentForm="ngForm" (ngSubmit)="saveStudent(studentForm)">
+<form #studentForm="ngForm" (ngSubmit)="saveStudent(studentForm.value)">
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title">Student Form</h3>
   </div>
   <div class="panel-body">
     <div class="form-group">
-      <label for="firstName" class="control-label">First Name</label>
-      <input required  id="firstName" name="firstName" [(ngModel)]="firstName" type="text" class="form-control"
+      <label for="StudentName" class="control-label">StudentName</label>
+      <input required  id="StudentName" name="StudentName" [(ngModel)]="student.StudentName" type="text" class="form-control"
       #firstNameControl="ngModel">
       <span   class="help-block" *ngIf="firstNameControl.invalid && firstNameControl.touched">
         name is required
@@ -18,8 +18,8 @@
     <div>untouched: {{firstNameControl.untouched}}</div>
 
     <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input  id="lastName" name="lastName" [(ngModel)]="lastName"  type="text" class="form-control">
+        <label for="Email">Email</label>
+        <input required id="Email" name="Email" [(ngModel)]="student.Email"  type="text" class="form-control">
     </div>
 
     <div class="panel-footer">

@@ -53,11 +53,19 @@ private studentUrl = "http://localhost:53338/api/student/getAll";
        }
 
       // 
-     
+      saveStudent(student: Student)
+    {
+      const id = student.Student_Id;
+
+      return this.http.post<Student[]>((`http://localhost:53338/api/student`), student , httpOptions ).pipe
+      (map(response => {return response; }),
+      catchError(this.handleError<Student[]>('saveStudent'))
+      );
+    }
    
     updateStudent(  student: Student): Observable<Student[]>
     {
-      const id = typeof student === 'number' ? student : student.Student_Id;
+      const id =  student.Student_Id;
 
       return this.http.put<Student[]>((`http://localhost:53338/api/student/UpdateStudent/${id}`), student , httpOptions ).pipe
       (map(response => {return response; }),
@@ -65,14 +73,13 @@ private studentUrl = "http://localhost:53338/api/student/getAll";
       );
     }
 
-    deleteStudent( student: Student | number): Observable<Student> {
-      const id1 = typeof student === 'number' ? student : student.Student_Id;
-      return this.http.delete<Student>((`http://localhost:53338/api/student/DeleteStudent/${id1}`),httpOptions).pipe(
+    deleteStudent( student: Student ): Observable<Student> {
+      const id =  student.Student_Id;
+      return this.http.delete<Student>((`http://localhost:53338/api/student/DeleteStudent/${id}`),httpOptions).pipe(
       catchError(this.handleError<Student>('deleteStudent'))
       );
     }
     
-    /* GET heroes whose name contains search term */
     
   
 }
