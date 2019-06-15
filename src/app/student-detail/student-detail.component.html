@@ -1,18 +1,4 @@
- 
-<!-- <div *ngIf="student">
-  
-  <h2>{{student.StudentName | uppercase}} Details</h2>
- 
-  <div><span>id: </span>{{student.Student_Id}}</div>
-  
-  <div>
-      <label>name:
-          <input [(ngModel)]="student.StudentName" placeholder="ur name"/>
-          <input [(ngModel)]="student.Student_Id" placeholder="ur name"/>
-      </label>
-  </div>
-   -->
-   <table *ngIf="student">
+<table *ngIf="student">
     <thead>
         <tr>
             <th colspan="2">
@@ -26,17 +12,15 @@
             <td>{{student.Student_Id}}</td>
         </tr>
         <tr>
-            <td>Name</td>
+            <td>student Name</td>
             <td>{{student.StudentName}}</td>
-        </tr>
-        <tr>
-            <td>Email</td>
+        </tr> <tr>
+            <td>student Email</td>
             <td>{{student.Email}}</td>
         </tr>
-        {{student.Student_Id | json }}
+        {{student.id | json }}
     </tbody>
 </table>
 
   <button (click)="goBack()">go back</button>
   <button (click)="save()">save</button>
-    

@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { StudentFormComponent } from './student-form/student-form.component';
 import { StudentListComponent } from './student-list/student-list.component';
+import { StudentService } from './student.service';
 
 @NgModule({
   declarations: [
@@ -29,10 +30,9 @@ import { StudentListComponent } from './student-list/student-list.component';
     FormsModule,
     HttpClientModule,
 
-   
   ],
 
-  providers: [],
+  providers: [StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

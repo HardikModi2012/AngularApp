@@ -1,8 +1,7 @@
 import { Student } from './student';
-import { STUDENTS } from './mock-students';
 import { Injectable } from '@angular/core';
-import { Observable, of, observable} from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of} from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError , map , tap } from 'rxjs/operators';
 //import 'rxjs/add/operator/map';
 // import 'rxjs/add/observable/throw';
@@ -43,28 +42,32 @@ private studentUrl = "http://localhost:53338/api/student/getAll";
   }
 
      getStudent(id : number): Observable<Student> {
-       return this.http.get<Student>(`{http://localhost:53338/api/student/getStudent}/${id}`)
+       return this.http.get<Student>(`http://localhost:53338/api/student/getStudent/${id}`)
       .pipe(map(response =>{
-          console.log(response);
-            return response; }),
-        catchError(this.handleError<Student>(`this.getStudent id =${id}`) )
-      );
-     }
-    
-    // updateStudent(student: Student): Observable<Student[]>
-    // {
-    //   return this.http.put<Student[]>(this.studentUrl, student , httpOptions ).pipe
-    //   (map(response => {return response; }),
-    //   catchError(this.handleError<Student[]>('updateStudent'))
-    //   );
-    // }
+           console.log(response);
+              return response; }),
+       
+        catchError(this.handleError<Student>("this.getStudent Student_Id =${id}") )
+        );
+       }
 
-    deleteStudent( student: Student | number): Observable<Student[]>
+      // 
+     
+    
+    updateStudent(student: Student): Observable<Student[]>
     {
-      const Student_Id = typeof student === 'number' ? student : student.Student_Id;
-      return this.http.delete<Student[]>("http://localhost:53338/api/student/DeleteStudent",{}).pipe
+      return this.http.put<Student[]>(this.studentUrl, student , httpOptions ).pipe
       (map(response => {return response; }),
-      catchError(this.handleError<Student[]>('deleteStudent'))
+      catchError(this.handleError<Student[]>('updateStudent'))
+      );
+    }
+
+    deleteStudent( student: Student | number): Observable<Student> {
+      const id = typeof student === 'number' ? student : student.id;
+
+      return this.http.delete<Student>((`{http://localhost:53338/api/student/DeleteStudent}/${id}`), httpOptions).pipe
+      (map(response => {return response; }),
+      catchError(this.handleError<Student>('deleteStudent'))
       );
     }
     

@@ -13,14 +13,12 @@ import { StudentService } from '../student.service';
 
 
 export class StudentDetailComponent implements OnInit {
-  @Input() student: Student;
+@Input()  student: Student;
   
   constructor(
     private route: ActivatedRoute,
-    // holds information about the route to this instance of component
     private studentService : StudentService,
-    // gets student data from the remote server and this component will use it to get the student2display.
-    private location : Location//for interacting with browser
+    private location : Location
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +28,7 @@ export class StudentDetailComponent implements OnInit {
   getStudent(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.studentService.getStudent(id)
-    .subscribe(student => this.student = student);//callback function
+    .subscribe(student => this.student = student);
   }
 
   goBack(): void
@@ -39,10 +37,10 @@ export class StudentDetailComponent implements OnInit {
   }
 
 //static image of the route information shortly after the component was created
-  // save(): void{
-  //   this.studentService.updateStudent(this.student)
-  //   .subscribe(() => this.goBack());
-  // } 
+  save(): void{
+    this.studentService.updateStudent(this.student)
+    .subscribe(() => this.goBack());
+  } 
 
   
   

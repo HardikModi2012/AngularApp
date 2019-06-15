@@ -2,8 +2,8 @@
 <ul class="students">
   
   <li *ngFor="let student of students">
-    <a routerLink="/detail/{{student.Student_Id}}">
-      <span class="badge">{{student.Student_Id}}</span> {{student.StudentName}}
+    <a routerLink="/detail/{{student.id}}">
+      <span class="badge">{{student.id}}</span> {{student.name}}
     </a>
     <button class="delete" title="Delete Student"
       (click)="delete(student)">x</button>

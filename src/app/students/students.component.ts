@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../student';
-import { STUDENTS } from '../mock-students';
 import { StudentService } from '../student.service';
 
 @Component({
@@ -23,9 +22,9 @@ export class StudentsComponent implements OnInit {
   }
   
   
-  // delete(student: Student): void
-  // {
-  //   this.students = this.students.filter(s => s !== student);
-  //   this.studentService.deleteStudent(student).subscribe();
-  // }
+  delete(student: Student): void
+  {
+    this.students = this.students.filter(s => s !== student);
+    this.studentService.deleteStudent(student).subscribe();
+  }
 }
